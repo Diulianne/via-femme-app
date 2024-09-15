@@ -29,7 +29,7 @@ function Login() {
 export default Login
 
 const Wrapper = tw.div`
-flex flex-col h-screen w-screen bg-white p-4  justify-center
+flex flex-col h-screen w-screen bg-white p-4 justify-center
 `;
 
 const SignInButton = tw.button`

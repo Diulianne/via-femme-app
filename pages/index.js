@@ -5,6 +5,12 @@ import Link from "next/link";
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useRouter } from "next/router";
+import { HomeIcon } from '@heroicons/react/20/solid';
+import { CreditCardIcon } from '@heroicons/react/24/outline';
+import { ClockIcon } from '@heroicons/react/24/outline';
+import { UserCircleIcon } from '@heroicons/react/20/solid';
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import { MapPinIcon } from '@heroicons/react/20/solid';
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -28,80 +34,132 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <Map />
       <ActionItems>
         <Header>
-
-          <Profile>
-            <Name>{user && user.name}</Name>
-            <UserImage src={user && user.photoUrl ? user.photoUrl : "https://i.ibb.co/MBtjqXQ/default-user-icon.png"}
-            onClick={() => signOut(auth)}
-            />
-          </Profile>
+          <Head>
+            <LogoCarImg src="https://i.ibb.co/WtLx6Ns/Captura-de-tela-2024-05-14-085200-removebg-preview.png" />
+            Viagens
+          </Head>
         </Header>
 
-        <ActionButtons>
+        <SearchContainer>
           <Link href="/search">
-            <ActionButton>
-              <ActionButtonImage src="https://i.ibb.co/cyvcpfF/uberx.png" /> Ride
-            </ActionButton>
+            <InputButton>
+              <MagnifyingGlassIcon className="h-6 w-6" />
+              Para onde vamos?
+            </InputButton>
           </Link>
-          <Link href="">
-          <ActionButton>
-            <ActionButtonImage src="https://i.ibb.co/n776JLm/bike.png" /> Wheels
-            </ActionButton>
-          </Link>
-          <Link href="">
-          <ActionButton>
-            <ActionButtonImage src="https://i.ibb.co/5RjchBg/uberschedule.png" /> Reserve
-            </ActionButton>
-          </Link>
-        </ActionButtons>
+        </SearchContainer>
 
-        <InputButton>Where to?</InputButton>
+        <RecentLocationsContainer>
+          <RecentLocations>
+            <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full text-gray-600" />
+            <span className="text-xl">Fatec Zona Sul</span>
+          </RecentLocations>
+          <RecentLocations>
+            <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full text-gray-600" />
+            <span className="text-xl">Fatec Zona Sul</span>
+          </RecentLocations>
+        </RecentLocationsContainer>
       </ActionItems>
+
+      <MapContainer>
+        <Map />
+      </MapContainer>
+
+      <ActionButtons>
+
+        <Link href="">
+          <ActionButton>
+            <HomeIcon className="h-6 w-6" />
+            Início
+          </ActionButton>
+        </Link>
+
+        <Link href="">
+          <ActionButton>
+            <CreditCardIcon className="h-6 w-6" />
+            Pagamento
+          </ActionButton>
+        </Link>
+
+        <Link href="">
+          <ActionButton>
+            <ClockIcon className="h-6 w-6" />
+            Atividade
+          </ActionButton>
+        </Link>
+
+        <Link href="">
+          <ActionButton>
+            <UserCircleIcon className="h-6 w-6" onClick={() => signOut(auth)} />
+            Conta
+          </ActionButton>
+        </Link>
+      </ActionButtons>
     </Wrapper>
-  )
+  );
 }
 
+// Estilos com Tailwind Styled Components
 const Wrapper = tw.div`
-  flex flex-col h-screen
-`
+  flex flex-col h-screen w-screen bg-white
+`;
 
 const ActionItems = tw.div`
-  flex-1 p-4
-`
+   flex flex-col p-4 
+`;
 
 const Header = tw.div`
-  flex justify-between items-center mb-4
-`
+  flex justify-center items-center border-b-2 border-customGray text-2xl
+`;
 
-
-const Profile = tw.div`
+const Head = tw.div`
   flex items-center
-`
+`;
 
-const Name = tw.div`
-  mr-4 text-sm px-2 py-1 rounded
-`
+const LogoCarImg = tw.img`
+  w-10 h-12
+`;
 
-const UserImage = tw.img`
-  w-12 h-12 rounded-full border border-gray-200 p-px
-`
+const SearchContainer = tw.div``;
 
+const InputButton = tw.div`
+  text-xl w-full px-4 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full
+`;
+
+const RecentLocationsContainer = tw.div`
+  space-y-4 mt-4 mb-6 ml-4
+`;
+
+const RecentLocations = tw.div`
+  flex items-center space-x-4
+`;
 
 const ActionButtons = tw.div`
-  flex justify-center
+  flex justify-around bg-white p-4 fixed bottom-0 w-full border border-gray-300 h-16
+`;
+
+const MapContainer = tw.div`
+  flex bg-green-200 h-80 rounded-2xl border-2 border-[#C8C8C8]
 `;
 
 const ActionButton = tw.div`
-  flex flex-col bg-gray-200 m-1 items-center justify-center rounded-lg transform hover:scale-105 transition text-xl cursor-pointer
+  flex flex-col items-center justify-center transform hover:scale-105 transition text-xl cursor-pointer
 `;
 
-const ActionButtonImage = tw.img`
-  h-3/5
-`;
 
-const InputButton = tw.div`
-  h-20 bg-gray-200 text-2xl p-4 flex items-center mt-4 rounded-lg
-`
+// const Profile = tw.div`
+//   flex items-center
+// `
+
+// const Name = tw.div`
+//   mr-4 text-sm px-2 py-1 rounded
+// `
+
+// const UserImage = tw.img`
+//   w-12 h-12 rounded-full border border-gray-200 p-px
+// `
+
+
+
