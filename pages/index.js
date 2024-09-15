@@ -37,8 +37,8 @@ export default function Home() {
   return (
     <Wrapper>
       <ActionItems>
-        <Header>
-          <Head>
+        <Header >
+          <Head >
             <LogoCarImg src="https://i.ibb.co/WtLx6Ns/Captura-de-tela-2024-05-14-085200-removebg-preview.png" />
             Viagens
           </Head>
@@ -121,7 +121,7 @@ const ActionItems = tw.div`
 `;
 
 const Header = tw.div`
-  flex justify-center items-center border-b-2 border-customGray text-2xl
+  flex justify-center items-center border-b-2 border-customGray text-2xl font-raleway font-bold
 `;
 
 const Head = tw.div`
@@ -135,11 +135,11 @@ const LogoCarImg = tw.img`
 const SearchContainer = tw.div``;
 
 const InputButton = tw.div`
-  text-xl w-full px-4 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full
+  w-full px-4 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full text-xl
 `;
 
 const RecentLocationsContainer = tw.div`
-  space-y-4 mt-4 mb-6 ml-4
+  space-y-4 mt-4 mb-6 ml-4 
 `;
 
 const RecentLocations = tw.div`

@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Open Sans', 'sans-serif'],
+        raleway: ['Raleway', 'sans-serif'], // Fonte alternativa
+      },
       colors: {
         'start-gradient': '#4A8EEF',
         'end-gradient': '#BD1197',
