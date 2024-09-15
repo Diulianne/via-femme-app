@@ -11,6 +11,8 @@ import { ClockIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/20/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { MapPinIcon } from '@heroicons/react/20/solid';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
+
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -54,11 +56,19 @@ export default function Home() {
         <RecentLocationsContainer>
           <RecentLocations>
             <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full text-gray-600" />
-            <span className="text-xl">Fatec Zona Sul</span>
+            <LocationDetails>
+              <span className="text-2xl">Fatec Zona Sul</span>
+              <Address>Rua Frederico Grotte, 322...</Address>
+            </LocationDetails>
+            <ChevronRightIcon className="h-6 w-6 text-gray-400 absolute right-0" />
           </RecentLocations>
           <RecentLocations>
             <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full text-gray-600" />
-            <span className="text-xl">Fatec Zona Sul</span>
+            <LocationDetails>
+              <span className="text-2xl">Fatec Zona Sul</span>
+              <Address>Rua Frederico Grotte, 322...</Address>
+            </LocationDetails>
+            <ChevronRightIcon className="h-6 w-6 text-gray-400 absolute right-0" />
           </RecentLocations>
         </RecentLocationsContainer>
       </ActionItems>
@@ -101,7 +111,7 @@ export default function Home() {
   );
 }
 
-// Estilos com Tailwind Styled Components
+
 const Wrapper = tw.div`
   flex flex-col h-screen w-screen bg-white
 `;
@@ -133,15 +143,21 @@ const RecentLocationsContainer = tw.div`
 `;
 
 const RecentLocations = tw.div`
-  flex items-center space-x-4
+  flex items-center space-x-4 relative 
+`;
+const LocationDetails = tw.div`
+  flex flex-col
 `;
 
+const Address = tw.span`
+  text-lg text-gray-500
+`;
 const ActionButtons = tw.div`
   flex justify-around bg-white p-4 fixed bottom-0 w-full border border-gray-300 h-16
 `;
 
 const MapContainer = tw.div`
-  flex bg-green-200 h-80 rounded-2xl border-2 border-[#C8C8C8]
+  flex h-full border-2 border-[#C8C8C8] rounded-2xl mb-16
 `;
 
 const ActionButton = tw.div`

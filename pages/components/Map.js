@@ -47,7 +47,7 @@ function Map(props) {
 export default Map;
 
 const Wrapper = tw.div`
-  flex-1
+  flex-1 rounded-2xl
 `
 
 
