@@ -47,7 +47,10 @@ export default function Home() {
         <SearchContainer>
           <Link href="/search">
             <InputButton>
-              <MagnifyingGlassIcon className="h-6 w-6" />
+              <MagnifyingGlassIcon
+                className="h-7 w-7"
+                style={{ stroke: 'url(#gradientStroke)' }}
+              />
               Para onde vamos?
             </InputButton>
           </Link>
@@ -55,7 +58,7 @@ export default function Home() {
 
         <RecentLocationsContainer>
           <RecentLocations>
-            <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full text-gray-600" />
+            <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full" />
             <LocationDetails>
               <span className="text-2xl">Fatec Zona Sul</span>
               <Address>Rua Frederico Grotte, 322...</Address>
@@ -63,7 +66,7 @@ export default function Home() {
             <ChevronRightIcon className="h-6 w-6 text-gray-400 absolute right-0" />
           </RecentLocations>
           <RecentLocations>
-            <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full text-gray-600" />
+            <MapPinIcon className="h-10 w-10 bg-gray-200 p-2 rounded-full" />
             <LocationDetails>
               <span className="text-2xl">Fatec Zona Sul</span>
               <Address>Rua Frederico Grotte, 322...</Address>
@@ -81,28 +84,36 @@ export default function Home() {
 
         <Link href="">
           <ActionButton>
-            <HomeIcon className="h-6 w-6" />
+            <HomeIcon
+              className="h-6 w-6"
+              style={{ fill: 'url(#gradientStroke)' }}
+            />
             Início
           </ActionButton>
         </Link>
 
         <Link href="">
           <ActionButton>
-            <CreditCardIcon className="h-6 w-6" />
+            <CreditCardIcon
+              className="h-6 w-6"
+              style={{ stroke: 'url(#gradientStroke)', strokeWidth: 2 }}
+            />
             Pagamento
           </ActionButton>
+
         </Link>
 
         <Link href="">
           <ActionButton>
-            <ClockIcon className="h-6 w-6" />
+            <ClockIcon className="h-6 w-6"
+              style={{ stroke: 'url(#gradientStroke)', strokeWidth: 2 }}/>
             Atividade
           </ActionButton>
         </Link>
 
         <Link href="">
           <ActionButton>
-            <UserCircleIcon className="h-6 w-6" onClick={() => signOut(auth)} />
+            <UserCircleIcon className="h-6 w-6" style={{ fill: 'url(#gradientStroke)' }} onClick={() => signOut(auth)} />
             Conta
           </ActionButton>
         </Link>
@@ -135,7 +146,7 @@ const LogoCarImg = tw.img`
 const SearchContainer = tw.div``;
 
 const InputButton = tw.div`
-  w-full px-4 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full text-xl
+  w-full px-6 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full text-xl gap-3  font-semibold
 `;
 
 const RecentLocationsContainer = tw.div`

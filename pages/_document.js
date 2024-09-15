@@ -15,6 +15,14 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
           rel="stylesheet"
         />
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+          <defs>
+            <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style={{ stopColor: '#4A8EEF', stopOpacity: 1 }} />
+              <stop offset="100%" style={{ stopColor: '#BD1197', stopOpacity: 1 }} />
+            </linearGradient>
+          </defs>
+        </svg>
       </Head>
       <body>
         <Main />
