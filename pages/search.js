@@ -1,78 +1,95 @@
 import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import Link from 'next/link'
+import { ArrowLeftIcon } from '@heroicons/react/20/solid';
+import { PlusCircleIcon } from '@heroicons/react/20/solid';
+import { HomeIcon } from '@heroicons/react/20/solid';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { BriefcaseIcon } from '@heroicons/react/20/solid';
+import { StarIcon } from '@heroicons/react/20/solid'; 
 
 function Search() {
     const [pickup, setPickup] = useState('');
     const [dropoff, setDropoff] = useState('');
     console.log(pickup);
-    
-  return (
-      <Wrapper>
-          <ButtonContainer>
-              <Link href="/">
-                  {/* Link é um componente do next que faz a navegação entre as páginas, volta p home */}
-              <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
-          </Link>
-          </ButtonContainer>
-          
-          <InputContainer>
-              <FromToIcons>
-                  <Circle src="https://img.icons8.com/ios-filled/50/9CA3AF/filled-circle.png" />
-                  <Line src="https://img.icons8.com/ios/50/9CA3AF/vertical-line.png" />
-                  <Square src="https://img.icons8.com/windows/50/000000/square-full.png" />
-              </FromToIcons>
-              <InputBoxes>
-                  <Input
-                      placeholder="Enter pickup location"
-                      value={pickup}
-                      onChange={(e) => setPickup(e.target.value)}
-                  />
-                  <Input
-                      placeholder="Where to?"
-                      value={dropoff}
-                      onChange={(e) => setDropoff(e.target.value)}
-                  />
-              </InputBoxes>
-              <PlusIcon src="https://img.icons8.com/ios/50/000000/plus-math.png" />
-          </InputContainer>
 
-          <SavedPlaces>
-              <StarIcon src="https://img.icons8.com/ios-filled/50/ffffff/star--v1.png" />
-              Saved Places
-          </SavedPlaces>
-          <Confirm>
-              <Link href={{
-                  pathname: "/confirm",
-                  query: {
-                      pickup: pickup,
-                      dropoff: dropoff,
-                  }
-              }}>
-                  <ConfirmButton>Confirm Locations</ConfirmButton>
-              </Link>
-          </Confirm>
-      </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <ButtonContainer>
+                <Link href="/">
+                    {/* Link é um componente do next que faz a navegação entre as páginas, volta p home */}
+                    <ArrowLeftIcon className="h-12 w-12"
+                        style={{ fill: 'url(#gradientStroke)' }} />
+                </Link>
+            </ButtonContainer>
+
+            <InputContainer>
+                <FromToIcons>
+                    <Circle src="https://i.ibb.co/zm1wtP7/Ellipse-7.png" />
+                    <Line src="
+                    https://i.ibb.co/25yDb1g/Line-1.png" />
+                    <Square src="https://i.ibb.co/g94K99N/Rectangle-8.png" />
+                </FromToIcons>
+                <InputBoxes>
+                    <Input
+                        placeholder="Sua localização"
+                        value={pickup}
+                        onChange={(e) => setPickup(e.target.value)}
+                    />
+                    <Input
+
+                        placeholder="Para onde?"
+                        value={dropoff}
+                        onChange={(e) => setDropoff(e.target.value)}
+                    />
+                </InputBoxes>
+                <PlusCircleIcon
+                    className="h-12 w-12 ml-1 mt-12"
+                    style={{ fill: 'url(#gradientStroke)' }}
+                />
+            </InputContainer>
+
+            <SavedPlaces>
+                <HomeIcon className="h-5 w-5 mr-1"  />
+                Casa
+                <ChevronRightIcon className="h-5 w-5 ml-2" />
+                <BriefcaseIcon className="h-5 w-5 mr-1" />
+                Trabalho
+                <ChevronRightIcon className="h-5 w-5 ml-2" />
+                <StarIcon className="h-5 w-5" />
+                Favoritos
+                <ChevronRightIcon className="h-5 w-5 ml-2 mr-1" />
+            </SavedPlaces>
+            <Confirm>
+                <Link href={{
+                    pathname: "/confirm",
+                    query: {
+                        pickup: pickup,
+                        dropoff: dropoff,
+                    }
+                }}>
+                    <ConfirmButton>Confirmar</ConfirmButton>
+                </Link>
+            </Confirm>
+        </Wrapper>
+    )
 }
 
 export default Search
 
 const Wrapper = tw.div`
-bg-gray-200 h-screen
+bg-white h-screen
 `
 const ButtonContainer = tw.div`
-bg-white px-4
+px-4
 `
-const BackButton = tw.img`
-h-12 cursor-pointer`
 
 const FromToIcons = tw.div`
 w-10 flex flex-col mr-2 items-center
 ` // flex - col faz os icones ficarem um embaixo do outro
 
 const InputContainer = tw.div`
-bg-white flex items-center px-4 mb-2
+flex items-center px-4 mb-2
 `
 
 const Circle = tw.img`
@@ -84,7 +101,7 @@ h-10
 `
 
 const Square = tw.img`
-h-3
+h-2.5
 `
 
 const InputBoxes = tw.div`
@@ -92,20 +109,15 @@ flex flex-col flex-1
 `
 
 const Input = tw.input`
-h-10 bg-gray-200 my-2 rounded-2 p-2 outline-none border-none
-`
-const PlusIcon = tw.img`
-w-10 h-10 bg-gray-200 rounded-full ml-3
+h-12 bg-customGray2 my-0.5 rounded-3xl p-3 outline-none border-none text-lg text-customGray3
 `
 const SavedPlaces = tw.div`
-flex items-center bg-white px-4 py-2
+flex justify-center items-center py-3 text-gray-600
 `
 
-const StarIcon = tw.img`
-bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
-`
 const Confirm = tw.div`
-bg-black text-white my-4 mx-4 py-2 text-center text-xl rounded-lg`
+bg-gradient-to-r from-start-gradient to-end-gradient text-white my-4 mx-4 py-2 text-center text-xl rounded-2xl`
+
 const ConfirmButton = tw.button`
-bg-black text-white rounded text-center py-2 flex-1 
+text-white rounded text-center py-2 flex-1 
 `

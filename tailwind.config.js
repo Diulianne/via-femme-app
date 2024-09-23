@@ -16,6 +16,7 @@ module.exports = {
         'end-gradient': '#BD1197',
         'customGray': '#D0D0D0',
         'customGray2': '#E8E8E8',
+        'customGray3': '#686868',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
