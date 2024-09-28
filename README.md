@@ -33,17 +33,12 @@ O Via Femme App é uma aplicação web desenvolvida com o objetivo de fornecer u
 - **Mapbox API**: Utilizada para renderização de mapas e geolocalização.[Mais informações](https://www.mapbox.com/).
 - **Firebase Authentication**: Utilizada para autenticação de usuários via Google. [Mais informações](https://firebase.google.com/?hl=pt).
 
-## Scripts Disponíveis
-- `dev`: Inicia o servidor de desenvolvimento.
-- `build`: Compila a aplicação para produção.
-- `start`: Inicia o servidor de produção.
-- `lint`: Executa o ESLint para verificar problemas no código.
 
 ## Estrutura de Diretórios
 - **pages/**: Contém as páginas da aplicação.
 - **components/**: Contém os componentes reutilizáveis da aplicação.
 - **styles/**: Contém os arquivos de estilo global.
-- **public/**: Contém arquivos estáticos como imagens e ícones.
+
 
 ## Como Executar o Projeto
 1. Clone o repositório.
