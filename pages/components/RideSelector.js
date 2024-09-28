@@ -22,7 +22,7 @@ const RideSelector = ({ pickupCoordinates, dropoffCoordinates }) => {
 
     return (
         <Wrapper>
-            <Title>Choose a ride, or swipe up for more</Title>
+            <Title></Title>
             <CarList>
                 {carList.map((car, index) => (
                     <Car key={index}>
@@ -30,10 +30,9 @@ const RideSelector = ({ pickupCoordinates, dropoffCoordinates }) => {
                         <CarDetails>
                             <div>
                                 <Service>{car.service}</Service>
-                                <Time>5 min away</Time>
                             </div>
                             <Price>
-                                {"$" + (rideDuration * car.multiplier).toFixed(2)}
+                                {"R$" + (rideDuration * car.multiplier).toFixed(2)}
                             </Price>
                         </CarDetails>
                     </Car>
@@ -50,15 +49,12 @@ flex flex-1 justify-between items-center
 `;
 
 const Service = tw.div`
-font-medium
+font-semibold text-xl
 `;
 
-const Time = tw.div`
-text-xs text-blue-500
-`;
 
 const Price = tw.div`
-text-sm
+font-semibold text-lg 
 `;
 
 const CarImage = tw.img`
@@ -70,13 +66,13 @@ flex p-4 items-center
 `;
 
 const Title = tw.div`
-text-gray-500 text-center text-xs py-2 border-b
+ py-4  bg-start-gradient rounded-t-2xl
 `;
 
 const CarList = tw.div`
-overflow-y-scroll
+overflow-y-scroll   scrollbar-hide
 `;
 
 const Wrapper = tw.div`
-flex-1 overflow-y-scroll flex flex-col
+flex-1 overflow-y-scroll flex flex-col scrollbar-hide
 `;

@@ -96,7 +96,7 @@ export default function Home() {
           <ActionButton>
             <CreditCardIcon
               className="h-6 w-6"
-              style={{ stroke: 'url(#gradientStroke)', strokeWidth: 2 }}
+              style={{ stroke: 'url(#gradientStroke)', strokeWidth: 2.5 }}
             />
             Pagamento
           </ActionButton>
@@ -106,7 +106,7 @@ export default function Home() {
         <Link href="">
           <ActionButton>
             <ClockIcon className="h-6 w-6"
-              style={{ stroke: 'url(#gradientStroke)', strokeWidth: 2 }}/>
+              style={{ stroke: 'url(#gradientStroke)', strokeWidth: 2.5 }}/>
             Atividade
           </ActionButton>
         </Link>
@@ -124,7 +124,7 @@ export default function Home() {
 
 
 const Wrapper = tw.div`
-  flex flex-col h-screen w-screen bg-white
+  flex flex-col h-screen w-screen bg-white text-black
 `;
 
 const ActionItems = tw.div`
@@ -146,7 +146,7 @@ const LogoCarImg = tw.img`
 const SearchContainer = tw.div``;
 
 const InputButton = tw.div`
-  w-full px-6 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full text-xl gap-3  font-semibold
+  w-full px-6 py-5 mx-auto my-2 flex items-center bg-customGray2 rounded-full text-xl gap-3 font-semibold
 `;
 
 const RecentLocationsContainer = tw.div`
@@ -154,14 +154,14 @@ const RecentLocationsContainer = tw.div`
 `;
 
 const RecentLocations = tw.div`
-  flex items-center space-x-4 relative 
+  flex items-center space-x-4 relative font-semibold
 `;
 const LocationDetails = tw.div`
   flex flex-col
 `;
 
 const Address = tw.span`
-  text-lg text-gray-500
+  text-lg text-gray-500 font-normal
 `;
 const ActionButtons = tw.div`
   flex justify-around bg-white p-4 fixed bottom-0 w-full border border-gray-300 h-16
@@ -172,7 +172,7 @@ const MapContainer = tw.div`
 `;
 
 const ActionButton = tw.div`
-  flex flex-col items-center justify-center transform hover:scale-105 transition text-xl cursor-pointer
+  flex flex-col items-center justify-center transform hover:scale-105 transition text-xl cursor-pointer font-semibold
 `;
 
 

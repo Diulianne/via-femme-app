@@ -50,16 +50,26 @@ function Search() {
             </InputContainer>
 
             <SavedPlaces>
-                <HomeIcon className="h-5 w-5 mr-1"  />
-                Casa
+                <div className="flex items-center space-x-1"> {/* Flex para alinhar ícone e texto, e space-x para um leve espaço */}
+                    <HomeIcon className="h-5 w-5" />
+                    <span>Casa</span>
+                </div>
+                <ChevronRightIcon className="h-5 w-5 ml-2" /> {/* Maior margem à esquerda */}
+
+                <div className="flex items-center space-x-1">
+                    <BriefcaseIcon className="h-5 w-5" />
+                    <span>Trabalho</span>
+                </div>
                 <ChevronRightIcon className="h-5 w-5 ml-2" />
-                <BriefcaseIcon className="h-5 w-5 mr-1" />
-                Trabalho
+
+                <div className="flex items-center space-x-1">
+                    <StarIcon className="h-5 w-5" />
+                    <span>Favoritos</span>
+                </div>
                 <ChevronRightIcon className="h-5 w-5 ml-2" />
-                <StarIcon className="h-5 w-5" />
-                Favoritos
-                <ChevronRightIcon className="h-5 w-5 ml-2 mr-1" />
             </SavedPlaces>
+
+
             <Confirm>
                 <Link href={{
                     pathname: "/confirm",
@@ -84,13 +94,13 @@ const ButtonContainer = tw.div`
 px-4
 `
 
+const InputContainer = tw.div`
+flex items-center px-4 mb-2
+`
 const FromToIcons = tw.div`
 w-10 flex flex-col mr-2 items-center
 ` // flex - col faz os icones ficarem um embaixo do outro
 
-const InputContainer = tw.div`
-flex items-center px-4 mb-2
-`
 
 const Circle = tw.img`
 h-2.5
@@ -112,7 +122,7 @@ const Input = tw.input`
 h-12 bg-customGray2 my-0.5 rounded-3xl p-3 outline-none border-none text-lg text-customGray3
 `
 const SavedPlaces = tw.div`
-flex justify-center items-center py-3 text-gray-600
+flex justify-around items-center py-3 text-gray-600 cursor-pointer
 `
 
 const Confirm = tw.div`

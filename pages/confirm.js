@@ -4,97 +4,117 @@ import { useRouter } from "next/router";
 import Map from './components/Map';
 import RideSelector from "./components/RideSelector";
 import Link from 'next/link';
-
+import { ArrowLeftCircleIcon } from '@heroicons/react/20/solid';
 
 const Confirm = () => {
     const [pickupCoordinates, setPickupCoordinates] = useState([0, 0]);
     const [dropoffCoordinates, setDropoffCoordinates] = useState([0, 0]);
 
-
     const router = useRouter();
     const { pickup, dropoff } = router.query;
 
-    const getPickupCoordinates = (pickup) => {
-        fetch(`https://api.mapbox.com/search/geocode/v6/forward?q=${pickup}&limit=1&access_token=pk.eyJ1IjoiZGl1bGlhbm5lIiwiYSI6ImNsenU0anI4djJxcHUyaXBsYXA0aHdhMGkifQ._s6lY9ygCFtpuA9_fKjj1Q`
-        )
-            .then(response => response.json())
-            .then(data => {
-                setPickupCoordinates(data.features[0].geometry.coordinates);
-
-            })
-            
-    };
-
     useEffect(() => {
-        getPickupCoordinates();
-    }, []);
+        const getPickupCoordinates = async (pickup) => {
+            const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?access_token=pk.eyJ1IjoiZGl1bGlhbm5lIiwiYSI6ImNsenU0anI4djJxcHUyaXBsYXA0aHdhMGkifQ._s6lY9ygCFtpuA9_fKjj1Q`);
+            const data = await response.json();
+            setPickupCoordinates(data.features[0]?.geometry?.coordinates || [0, 0]);
+        };
 
+        const getDropoffCoordinates = async (dropoff) => {
+            const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${dropoff}.json?access_token=pk.eyJ1IjoiZGl1bGlhbm5lIiwiYSI6ImNsenU0anI4djJxcHUyaXBsYXA0aHdhMGkifQ._s6lY9ygCFtpuA9_fKjj1Q`);
+            const data = await response.json();
+            setDropoffCoordinates(data.features[0]?.geometry?.coordinates || [0, 0]);
+        };
 
-    const getDropoffCoordinates = (dropoff) => {
-        fetch(`https://api.mapbox.com/search/geocode/v6/forward?q=${dropoff}&limit=1&access_token=pk.eyJ1IjoiZGl1bGlhbm5lIiwiYSI6ImNsenU0anI4djJxcHUyaXBsYXA0aHdhMGkifQ._s6lY9ygCFtpuA9_fKjj1Q`
-        ) 
-            // tiveram algumas mudanças aqui, no video é usado a versão 5 e aqui está sendo usada a 6, por isso o codigo está diferente
-            .then(response => response.json())
-            .then(data => {
-                console.log('dropoff');
-                
-                setDropoffCoordinates(data.features[0].geometry.coordinates);
-            //     tiveram algumas mudanças aqui, no video é usado .center e isso não existe mais
-            })
-
-    };
-
-    useEffect(() => {
-        getPickupCoordinates(pickup);
-        getDropoffCoordinates(dropoff);
+        if (pickup) getPickupCoordinates(pickup);
+        if (dropoff) getDropoffCoordinates(dropoff);
     }, [pickup, dropoff]);
 
     return (
         <Wrapper>
-            <ButtonContainer>
-                <Link href="/search">
-                    <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
-                </Link>
-            </ButtonContainer>
-            <Map pickupCoordinates={pickupCoordinates}
-                dropoffCoordinates={dropoffCoordinates} />
-            {/* passa as coordenadas para o componente mapa */}
+            <ButtonLocationContainer>
+                <ButtonContainer>
+                    <Link href="/search">
+                        <ArrowLeftCircleIcon className="h-12 w-12" style={{ fill: 'url(#gradientStroke)' }} />
+                    </Link>
+                </ButtonContainer>
+                <LocationContainer>
+                    <FromToIcons>
+                        <Circle src="https://i.ibb.co/zm1wtP7/Ellipse-7.png" />
+                        <Line src="https://i.ibb.co/25yDb1g/Line-1.png" />
+                        <Square src="https://i.ibb.co/g94K99N/Rectangle-8.png" />
+                    </FromToIcons>
+                    <InputBox>
+                        <PickUpLocation>{pickup ? pickup : "Carregando..."}</PickUpLocation>
+                        <DropOffLocation>{dropoff ? dropoff : "Carregando..."}</DropOffLocation>
+                    </InputBox>
+                </LocationContainer>
+            </ButtonLocationContainer>
+            <Map pickupCoordinates={pickupCoordinates} dropoffCoordinates={dropoffCoordinates} />
             <RideContainer>
-                <RideSelector
-                    pickupCoordinates={pickupCoordinates}
-                    dropoffCoordinates={dropoffCoordinates}
-               />
-                  
-                     
+                <RideSelector pickupCoordinates={pickupCoordinates} dropoffCoordinates={dropoffCoordinates} />
                 <ConfirmButtonContainer>
-                    <ConfirmButton>
-                        Confirm UberX
-                    </ConfirmButton>
-                    
+                    <ConfirmButton>Confirmar</ConfirmButton>
                 </ConfirmButtonContainer>
             </RideContainer>
         </Wrapper>
-
-    )
+    );
 };
 
 export default Confirm;
 
+const ButtonLocationContainer = tw.div`
+    flex items-center z-50 p-2 absolute top-4 w-full justify-center
+`;
+
+const FromToIcons = tw.div`
+     flex flex-col mr-4 items-center
+`;
+
+const Circle = tw.img`
+    h-2.5
+`;
+
+const Line = tw.img`
+    h-6
+`;
+
+const Square = tw.img`
+    h-2.5
+`;
+
 const ButtonContainer = tw.div`
-bg-white z-50 border rounded-full p-2 absolute top-4 left-4 shadow-md
-`
-const BackButton = tw.img`
-h-12 cursor-pointer 
-`
+    px-4
+`;
+
+const LocationContainer = tw.div`
+    flex items-center w-full bg-white rounded-2xl p-1 pl-4 mr-4
+`;
+
+const InputBox = tw.div`
+    flex flex-col flex-1 text-sm 
+`;
+
+const PickUpLocation = tw.div`
+    flex items-center 
+`;
+
+const DropOffLocation = tw.div`
+    flex items-center 
+`;
+
 const ConfirmButton = tw.div`
-bg-black text-white my-4 mx-4 py-4 text-center text-xl rounded-lg
-`
+    bg-gradient-to-r from-start-gradient to-end-gradient text-white my-4 mx-4 py-4 text-center text-xl rounded-2xl
+`;
+
 const ConfirmButtonContainer = tw.div`
-border-t-2
-`
+    border-t-2
+`;
+
 const Wrapper = tw.div`
-flex flex-col h-screen
-`
+    flex flex-col h-screen bg-white text-black  
+`;
+
 const RideContainer = tw.div`
-flex flex-1 flex-col h-1/2
-`
+    flex flex-1 flex-col h-1/2
+`;
