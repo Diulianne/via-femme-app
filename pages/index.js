@@ -111,9 +111,9 @@ export default function Home() {
           </ActionButton>
         </Link>
 
-        <Link href="">
+        <Link href="/account">
           <ActionButton>
-            <UserCircleIcon className="h-6 w-6" style={{ fill: 'url(#gradientStroke)' }} onClick={() => signOut(auth)} />
+            <UserCircleIcon className="h-6 w-6" style={{ fill: 'url(#gradientStroke)' }}  />
             Conta
           </ActionButton>
         </Link>
